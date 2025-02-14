@@ -6,6 +6,7 @@ body {
 }
 h1 {
     text-align: center;
+    font-weight: 700;
 }
 h2 {
     font-size: 3rem;
@@ -45,7 +46,12 @@ ul {
 
 .four.columns h1 {
 	font-size: 2.4rem;
-	margin: 0 0 0 20%;
+	margin: 0 0 0 0;
+}
+
+#logo {
+    white-space: nowrap;
+    align-self: left;
 }
 
 #hero {
@@ -132,7 +138,13 @@ ul {
     text-align: center;
     border: 1px solid #e1e1e1;
     background: white;
+    border-radius: 7px;
 }
+
+.card img {
+    border-radius: 5px 5px 0 0;
+}
+
 @media (min-width: 550px) {
     .card {
         text-align: left;
@@ -158,12 +170,58 @@ ul {
 
 
 .footer {
-    margin-top: 40px;
+    margin: 40px 0 40px 0;
     border-top:1px solid #aaa;;
     padding-top: 40px;
 }
+
 .footer .menu a{
 display: block;
 margin-bottom: 10px;
 text-decoration: none;
+}
+
+.titulo-producto {
+    margin-top: 3rem;
+}
+
+.teclado-pagina {
+    padding: 0 0 20px 0;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem;
+}
+
+@media (min-width: 750px) {
+    .flex {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.teclado-desc {
+    padding: 5%;
+}
+
+.marca {
+    font-weight: 700;
+}
+
+.precio-teclado {
+    text-decoration: line-through;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.precio-teclado span {
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.regresar {
+    margin: 5rem 0 0 0;
 }

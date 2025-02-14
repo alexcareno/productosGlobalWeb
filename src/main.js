@@ -9,13 +9,25 @@ let articulosCarrito = [];
 cargarEventListeners();
 
 function cargarEventListeners() {
+
+	document.addEventListener('DOMContentLoaded', () => {
+		articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+		carritoHTML();
+	});
+
 	// Dispara cuando se presiona "Agregar Carrito"
 	listaTeclados.addEventListener('click', agregarTeclado);
 
 	carrito.addEventListener('click', eliminarTeclado);
 
 	// Al Vaciar el carrito
-	vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
+	vaciarCarritoBtn.addEventListener('click', () => {
+		vaciarCarrito();
+		articulosCarrito = [];
+		localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+	});
+
+
 
 }
 
@@ -27,6 +39,11 @@ function agregarTeclado(e) {
 		const teclado = e.target.parentElement.parentElement;
 		leerDatosTeclado(teclado);
 	}
+}
+
+function sincronizarItems() {
+	localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+	carritoHTML();
 }
 
 
@@ -53,7 +70,7 @@ function leerDatosTeclado(teclado) {
 	} else {
 		articulosCarrito = [...articulosCarrito, infTeclado];
 	}
-
+	sincronizarItems();
 	carritoHTML();
 }
 
@@ -66,7 +83,7 @@ function eliminarTeclado(e) {
 
 		// Eliminar del arreglo del carrito
 		articulosCarrito = articulosCarrito.filter(teclado => teclado.id !== tecId);
-
+		sincronizarItems();
 		carritoHTML();
 	}
 }
@@ -75,7 +92,6 @@ function eliminarTeclado(e) {
 function carritoHTML() {
 
 	vaciarCarrito();
-
 	articulosCarrito.forEach(teclado => {
 		const row = document.createElement('tr');
 		row.innerHTML = `
@@ -99,4 +115,8 @@ function vaciarCarrito() {
 	while (contenedorCarrito.firstChild) {
 		contenedorCarrito.removeChild(contenedorCarrito.firstChild);
 	}
+}
+
+function cambiarPagina(url) {
+	window.location.href = url;
 }
